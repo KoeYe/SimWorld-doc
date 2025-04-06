@@ -2,9 +2,9 @@
 
 # -- Project information
 
-project = 'Lumache'
-copyright = '2021, Graziella'
-author = 'Graziella'
+project = 'SimWorld'
+copyright = '2025, SimWorld Team'
+author = 'SimWorld Team'
 
 release = '0.1'
 version = '0.1.0'
