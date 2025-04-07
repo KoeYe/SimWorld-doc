@@ -97,7 +97,7 @@ In each iteration, we randomly select a building type from the building database
 
 .. image:: assets/clpg_building.png
    :alt: Building Generation
-   :width: 800px
+   :width: 500px
    :align: center
 
 - The last building on the road
