@@ -9,11 +9,16 @@ Data Structure
 
 A city layout contains many different types of elements. While it's impractical to catalog every possible item in a city, we can simplify our understanding by grouping all items into **4** main categories:
 
-| **Road** | Highway | Normal way | small roads | … |
-| --- | --- | --- | --- | --- |
-| **Building** | Hospital | Landmark | School | … |
-| **Detail** | Tree | Bone | Parking cars | … |
-| **Actor** | Cars on the road | Pedestrian | Agent | … |
+
++------------+-------------+-------------+------------+-----+
+| **Road**   | Highway    | Normal way  | Small roads| ... |
++------------+-------------+-------------+------------+-----+
+| **Building**| Hospital   | Landmark    | School     | ... |
++------------+-------------+-------------+------------+-----+
+| **Detail** | Tree       | Bone        | Parking cars| ... |
++------------+-------------+-------------+------------+-----+
+| **Actor**  | Cars on the road | Pedestrian | Agent   | ... |
++------------+-------------+-------------+------------+-----+
 
 Procedural Generation
 ---------------------
@@ -83,11 +88,11 @@ Building generation is based on the generated road maps. From a list of roads, w
 
 A pointer tracks the current position for candidate buildings. During generation, the pointer's position updates based on the building size and road angle. The pseudo code for pointer updates is shown as follows:
 
-```python
-pointer_position = road_start * side * offset + margin_distance
-while pointer_position < road_end * side * offset - margin_distance:
-	pointer_position += building_size * angle
-```
+.. code-block:: python
+   # Pseudo code for pointer updates
+   pointer_position = road_start * side * offset + margin_distance
+   while pointer_position < road_end * side * offset - margin_distance:
+      pointer_position += building_size * angle
 
 In each iteration, we randomly select a building type from the building database and check if it can be placed at the current position without overlapping with roads or other buildings.
 
@@ -136,23 +141,40 @@ While rule-based generation creates realistic results, it limits layout diversit
 
 Function calls include the following capabilities:
 
-| **Function Name** | **Purpose** | **Parameters** | **Return** |
-| --- | --- | --- | --- |
-| AddRoad | Create a new road segment | start_pos (Vector2), end_pos (Vector2), road_type (enum) | road_id |
-| RemoveRoad | Delete existing road | road_id | bool success |
-| ModifyRoad | Update road properties | road_id, new_start_pos (optional), new_end_pos (optional), new_type (optional) | bool success |
-| QueryRoadNearby | Find roads within radius | position (Vector2), radius (float) | List[road_id] |
-| AddBuilding | Place new building | position (Vector2), rotation (float), building_type (enum) | building_id |
-| RemoveBuilding | Delete existing building | building_id | bool success |
-| ModifyBuilding | Update building properties | building_id, new_position (optional), new_rotation (optional) | bool success |
-| QueryBuildingNearby | Find buildings within radius | position (Vector2), radius (float) | List[building_id] |
-| AddDetail | Place detail object | position (Vector2), detail_type (enum), parent_id (optional) | detail_id |
-| RemoveDetail | Delete existing detail | detail_id | bool success |
-| ModifyDetail | Update detail properties | detail_id, new_position (optional), new_type (optional) | bool success |
-| QueryDetailNearby | Find details within radius | position (Vector2), radius (float) | List[detail_id] |
-| GenerateRoadNetwork | Auto-generate road layout | seed (int), config_file_path (string) | bool success |
-| GenerateBuildingsAlongRoad | Auto-place buildings along road | road_id, config_file_path (string) | List[building_id] |
-| GenerateDetailsAroundBuilding | Auto-place details near building | building_id, detail_density (float) | List[detail_id] |
-| GenerateRoadSideDetails | Auto-place details along road | road_id, detail_types (List[enum]) | List[detail_id] |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| **Function Name**       | **Purpose**                | **Parameters**                                | **Return**        |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| AddRoad                | Create a new road segment  | start_pos (Vector2), end_pos (Vector2), road_type (enum) | road_id          |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| RemoveRoad             | Delete existing road       | road_id                                       | bool success      |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| ModifyRoad             | Update road properties     | road_id, new_start_pos (optional), new_end_pos (optional), new_type (optional) | bool success      |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| QueryRoadNearby        | Find roads within radius   | position (Vector2), radius (float)            | List[road_id]     |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| AddBuilding            | Place new building         | position (Vector2), rotation (float), building_type (enum) | building_id      |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| RemoveBuilding         | Delete existing building   | building_id                                   | bool success      |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| ModifyBuilding         | Update building properties | building_id, new_position (optional), new_rotation (optional) | bool success      |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| QueryBuildingNearby    | Find buildings within radius | position (Vector2), radius (float)           | List[building_id] |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| AddDetail              | Place detail object        | position (Vector2), detail_type (enum), parent_id (optional) | detail_id        |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| RemoveDetail           | Delete existing detail     | detail_id                                     | bool success      |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| ModifyDetail           | Update detail properties   | detail_id, new_position (optional), new_type (optional) | bool success      |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| QueryDetailNearby      | Find details within radius | position (Vector2), radius (float)            | List[detail_id]   |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| GenerateRoadNetwork    | Auto-generate road layout  | seed (int), config_file_path (string)         | bool success      |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| GenerateBuildingsAlongRoad | Auto-place buildings along road | road_id, config_file_path (string)       | List[building_id] |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| GenerateDetailsAroundBuilding | Auto-place details near building | building_id, detail_density (float)     | List[detail_id]   |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
+| GenerateRoadSideDetails | Auto-place details along road | road_id, detail_types (List[enum])          | List[detail_id]   |
++------------------------+----------------------------+-----------------------------------------------+-------------------+
 
 All functions return appropriate error codes and messages when operations fail (e.g., invalid positions, overlapping objects, etc).
