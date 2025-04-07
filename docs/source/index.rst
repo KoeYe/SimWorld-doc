@@ -30,3 +30,4 @@ Contents
    api
    traffic_system
    a2a
+   procedural_generation

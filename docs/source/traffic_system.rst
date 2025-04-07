@@ -1,7 +1,8 @@
 Traffic System
 ===============
 
-## Overview
+Overview
+--------
 
 .. image:: assets/traffic_overview.png
    :alt: Traffic System Overview
@@ -32,7 +33,8 @@ After establishing the route network, three managers handle populating the traff
 Together, these components form a fully functional traffic simulation pipeline, allowing the virtual
 city to support realistic and reactive mobility behavior.
 
-## Architecture
+Architecture
+------------
 
 .. image:: assets/traffic_arc.png
    :alt: Traffic System Architecture
@@ -47,7 +49,8 @@ which provides bidirectional communication between the traffic logic and the sim
 allows the system to send control signals and receive state updates from virtual actors within the engine.
 
 
-### Base Class
+Base Class
+~~~~~~~~~~
 
 The traffic system is composed of several modular components that collectively simulate realistic urban mobility. The system is initialized based on a **Road Network**, which provides the geometric and topological structure of the city. 
 
@@ -59,7 +62,8 @@ The traffic system is composed of several modular components that collectively s
 - **PID Controller**: A low-level control module responsible for computing continuous control signals (e.g., turning) for vehicles, ensuring smooth movement and realistic behavior along generated paths.
 - **Communicator**: This interface bridges the traffic system with the Unreal Engine simulation, allowing commands to be sent and actor states to be retrieved in real time.
 
-## Extensibility
+Extensibility
+-------------
 
 The modular design of the traffic system ensures high extensibility and adaptability across diverse simulation scenarios. Each core component operates independently with well-defined interfaces, allowing new functionalities to be integrated with minimal disruption. Here are several customizable elements: 
 

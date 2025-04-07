@@ -4,7 +4,8 @@ City Layout Procedural Generation
 The City Layout Procedural Generation (CLPG) module is a key component of the SimWorld simulator, responsible for generating realistic city layouts from simple input specifications. This module provides a flexible and extensible framework for creating diverse urban environments that can be used for various embodied AI tasks.
 
 
-# Data Structure
+Data Structure
+--------------
 
 A city layout contains many different types of elements. While it's impractical to catalog every possible item in a city, we can simplify our understanding by grouping all items into **4** main categories:
 
@@ -14,11 +15,13 @@ A city layout contains many different types of elements. While it's impractical 
 | **Detail** | Tree | Bone | Parking cars | … |
 | **Actor** | Cars on the road | Pedestrian | Agent | … |
 
-# Procedural Generation
+Procedural Generation
+---------------------
 
 Procedural generation is a fundamental method for creating city layouts that resemble the real world. Using this approach, all items in the generated world follow specific rules and constraints. These constraints control how different items are distributed, ensuring the city layout appears organized rather than random. 
 
-## Code Structure
+Code Structure
+~~~~~~~~~~~~~~
 
 .. image:: assets/clpg_arc.png
    :alt: City Layout Procedural Generation Architecture
@@ -31,11 +34,13 @@ Generators contain various algorithms for generating and sampling candidate posi
 
 The Road manager serves as the foundation for the city, followed by the Building manager. The Detail manager generates content based on data from the Road and Building managers through the generator.
 
-## Generation Process
+Generation Process
+~~~~~~~~~~~~~~~~~~
 
 There are 4 stages of generation process: road generation, building generation, detail generation and data generation
 
-### Road
+Road
+::::
 
 Road generation consists of two sub-stages: initiation and road-tree growth.
 
@@ -69,7 +74,8 @@ During generation, when a newly generated road endpoint is very close to an exis
 
 Despite the attachment mechanism, road intersections can still occur. We perform additional intersection checks during generation. If any roads intersect, we remove the most recently generated one.
 
-### Building
+Building
+::::::::
 
 Building generation is based on the generated road maps. From a list of roads, we select one road segment and generate buildings along both sides. For each side, the generation process has two stages: normal generation and final building placement. The main goal is to create a uniform distribution of different building types while maximizing space utilization on the map.
 
@@ -94,7 +100,8 @@ In each iteration, we randomly select a building type from the building database
 
 When the pointer approaches the road's end, most candidate buildings may not fit the remaining space. To fill this gap efficiently, we greedily select buildings from largest to smallest until one fits. After placement, we update the pointer's position and continue to the next iteration. Only when no building can fit in the remaining road space do we move to the other side of the road or the next road segment.
 
-### Details
+Details
+:::::::
 
 Details refer to the smaller objects in a city, including trees, road cones, chairs, tables, scooters, and other items. These objects are distributed throughout every corner of the city. To simplify their generation process, we use two different approaches: details surrounding buildings and details along roads. Note that we don't consider collisions between details and other objects—we only check if positions are accessible. This is a practical trade-off between computational efficiency and visual effect, given the large number of details.
 
@@ -117,11 +124,13 @@ Details refer to the smaller objects in a city, including trees, road cones, cha
        :align: center
     
 
-# Interface
+Interface
+---------
 
 We also have a user-friendly interface that supports manual design and modification of city layouts. Users can add new buildings, set their positions through mouse dragging, and move existing buildings.
 
-# API
+API
+---
 
 While rule-based generation creates realistic results, it limits layout diversity. Therefore, we provide function calling capabilities that allow LLMs to easily create and modify layouts. Assuming we have a VLM/LLM that can understand the abstract structure of city layouts—including tree distribution, road maps, benches, and building placement—it can use our tool to simulate a city in UE based on its understanding.
 
