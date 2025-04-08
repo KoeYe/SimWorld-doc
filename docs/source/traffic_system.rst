@@ -5,9 +5,9 @@ Overview
 --------
 
 .. image:: assets/traffic_overview.png
-   :alt: Traffic System Overview
-   :width: 800px
-   :align: center
+    :alt: Traffic System Overview
+    :width: 800px
+    :align: center
 
 The traffic system is a core component of our simulator,responsible for simulating dynamic road
 usage by both vehicles and pedestrians.It enables the representation of realistic traffic flow,
