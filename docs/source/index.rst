@@ -27,7 +27,6 @@ Contents
 .. toctree::
 
    usage
-   api
+   procedural_generation
    traffic_system
    a2a
-   procedural_generation

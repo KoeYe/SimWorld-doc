@@ -58,7 +58,7 @@ Using the initial road(s) as a foundation, we generate additional roads through 
 
 .. image:: assets/clpg_road_1.png
    :alt: Road Tree Growth
-   :width: 800px
+   :width: 500px
    :align: center
 
 To balance the road tree's depth and branch numbers, we use a Priority Queue instead of simple DFS or BFS iteration algorithms. The Priority Queue, implemented as a tree structure, helps select growth nodes from the generated road tree. This approach creates a road map with balanced branches and depth, better resembling real city or town road layouts.
