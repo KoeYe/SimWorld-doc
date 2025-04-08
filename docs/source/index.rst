@@ -1,5 +1,5 @@
 Welcome to SimWorld's documentation!
-===================================
+====================================
 
 **SimWorld** is a novel Unreal Engine-based simulator designed
 to generate unlimited, diverse urban environments for embodied AI tasks.
