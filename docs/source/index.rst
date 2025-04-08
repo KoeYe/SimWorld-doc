@@ -1,6 +1,11 @@
 Welcome to SimWorld's documentation!
 ====================================
 
+.. image:: assets/logo.png
+   :alt: SimWorld Logo
+   :width: 200px
+   :align: center
+
 **SimWorld** is a novel Unreal Engine-based simulator designed
 to generate unlimited, diverse urban environments for embodied AI tasks.
 
