@@ -1,7 +1,7 @@
 Welcome to SimWorld's documentation!
 ====================================
 
-.. image:: assets/overview.png
+.. image:: assets/Overview.png
    :alt: SimWorld Overview
    :width: 800px
    :align: center
