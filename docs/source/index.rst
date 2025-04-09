@@ -1,9 +1,9 @@
 Welcome to SimWorld's documentation!
 ====================================
 
-.. image:: assets/logo.png
-   :alt: SimWorld Logo
-   :width: 200px
+.. image:: assets/overview.png
+   :alt: SimWorld Overview
+   :width: 800px
    :align: center
 
 **SimWorld** is a novel Unreal Engine-based simulator designed
@@ -26,11 +26,18 @@ simulation powered by Unreal Engine 5.
 
    This project is under active development.
 
+Architecture
+------------
+
+.. image:: assets/Arch.png
+   :alt: SimWorld Architecture
+   :width: 800px
+   :align: center
+
 Contents
 --------
 
 .. toctree::
-
    usage
    procedural_generation
    traffic_system
