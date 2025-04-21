@@ -42,6 +42,6 @@ Contents
    :caption: Contents:
 
    getting_started/index
-   achitecture/index
+   architecture/index
    python_api/index
    
