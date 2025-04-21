@@ -38,7 +38,10 @@ Contents
 --------
 
 .. toctree::
-   usage
-   procedural_generation
-   traffic_system
-   a2a
+   :maxdepth: 2
+   :caption: Contents:
+
+   getting_started/index
+   achitecture/index
+   python_api/index
+   
