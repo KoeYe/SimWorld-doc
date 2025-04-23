@@ -1,7 +1,7 @@
 City Layout Procedural Generation
 ==================================
 
-The City Layout Procedural Generation (CLPG) module is a key component of the SimWorld simulator, responsible for generating realistic city layouts from simple input specifications. This module provides a flexible and extensible framework for creating diverse urban environments that can be used for various embodied AI tasks.
+The **City Layout Procedural Generation (CLPG)** module is a key component of the SimWorld simulator, responsible for generating realistic city layouts from simple input specifications. This module provides a flexible and extensible framework for creating diverse urban environments that can be used for various embodied AI tasks.
 
 Data Structure
 --------------

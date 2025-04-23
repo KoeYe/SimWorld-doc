@@ -9,10 +9,10 @@ Overview
     :width: 800px
     :align: center
 
-The traffic system is a core component of our simulator,responsible for simulating dynamic road
-usage by both vehicles and pedestrians.It enables the representation of realistic traffic flow,
+The **Traffic System** is a core component of our simulator, responsible for simulating dynamic road
+usage by both vehicles and pedestrians. It enables the representation of realistic traffic flow,
 including vehicle generation, path planning, intersection control, and pedestrian behavior. By
-managing road interactions and traffic signals,this system supports complex urban scenarios such as
+managing road interactions and traffic signals, this system supports complex urban scenarios such as
 congestion, pedestrian crossings, and traffic light coordination, providing a critical foundation for
 evaluating urban infrastructure and mobility policies.
 
