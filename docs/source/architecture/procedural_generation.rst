@@ -27,7 +27,7 @@ Procedural generation is a fundamental method for creating city layouts that res
 Code Structure
 ~~~~~~~~~~~~~~
 
-.. image:: assets/clpg_arc.png
+.. image:: ../assets/clpg_arc.png
    :alt: City Layout Procedural Generation Architecture
    :width: 800px
    :align: center
@@ -56,7 +56,7 @@ In the initiation stage, the program reads the config file, focusing on the road
 
 Using the initial road(s) as a foundation, we generate additional roads through a tree-like growth structure.
 
-.. image:: assets/clpg_road_1.png
+.. image:: ../assets/clpg_road_1.png
    :alt: Road Tree Growth
    :width: 500px
    :align: center
@@ -69,7 +69,7 @@ During generation, we handle two special cases: closely spaced road endpoints an
 
 During generation, when a newly generated road endpoint is very close to an existing node, it creates an unsightly gap. In such cases, we attach the new node to the existing one, eliminating gaps while creating more diverse road lengths.
 
-.. image:: assets/clpg_road_2.png
+.. image:: ../assets/clpg_road_2.png
    :alt: Road End Attachment
    :width: 800px
    :align: center
@@ -95,7 +95,7 @@ A pointer tracks the current position for candidate buildings. During generation
 
 In each iteration, we randomly select a building type from the building database and check if it can be placed at the current position without overlapping with roads or other buildings.
 
-.. image:: assets/clpg_building.png
+.. image:: ../assets/clpg_building.png
    :alt: Building Generation
    :width: 500px
    :align: center
@@ -113,7 +113,7 @@ Details refer to the smaller objects in a city, including trees, road cones, cha
     
     For each building, we sample a constant number of detail positions within a suitable range. We then check whether these candidate positions are available, since some may be in the middle of roads or inside other buildings. The sampling area consists of two rectangular zones, excluding the side closest to the road.
     
-    .. image:: assets/clpg_detail_1.png
+    .. image:: ../assets/clpg_detail_1.png
        :alt: Details Surround Building
        :width: 800px
        :align: center
@@ -122,7 +122,7 @@ Details refer to the smaller objects in a city, including trees, road cones, cha
     
     Along the roads, we divide the sidewalk area into different functional parts: vegetation, random objects, and parking areas. We generate different types of detail items according to each area. The density of items varies by area, offering greater customization and creating a cleaner, more suitable sidewalk appearance.Three functional parts are divided by distance from the road's middle line:
     
-    .. image:: assets/clpg_detail_2.png
+    .. image:: ../assets/clpg_detail_2.png
        :alt: Details Spline Road
        :width: 800px
        :align: center
@@ -140,5 +140,5 @@ While rule-based generation creates realistic results, it limits layout diversit
 
 Function calls include the following capabilities:
 
-..
+.. code-block:: python
 All functions return appropriate error codes and messages when operations fail (e.g., invalid positions, overlapping objects, etc).

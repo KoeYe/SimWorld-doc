@@ -39,9 +39,7 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
-   getting_started/index
+   quick_start/index
    architecture/index
    python_api/index
-   

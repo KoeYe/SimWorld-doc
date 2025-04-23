@@ -4,7 +4,7 @@ Traffic System
 Overview
 --------
 
-.. image:: assets/traffic_overview.png
+.. image:: ../assets/traffic_overview.png
     :alt: Traffic System Overview
     :width: 800px
     :align: center
@@ -36,7 +36,7 @@ city to support realistic and reactive mobility behavior.
 Architecture
 ------------
 
-.. image:: assets/traffic_arc.png
+.. image:: ../assets/traffic_arc.png
    :alt: Traffic System Architecture
    :width: 800px
    :align: center
@@ -60,7 +60,6 @@ The traffic system is composed of several modular components that collectively s
 - **Pedestrian Manager**: Responsible for spawning **Pedestrians** on sidewalks and controlling their navigation, especially when interacting with crosswalks and intersection logic.
 - **Intersection Manager**: Identifies and manages **Intersections** in the traffic network. It places and controls **Traffic Signals** to regulate vehicle and pedestrian flow based on predefined or adaptive timing schemes.
 - **PID Controller**: A low-level control module responsible for computing continuous control signals (e.g., turning) for vehicles, ensuring smooth movement and realistic behavior along generated paths.
-- **Communicator**: This interface bridges the traffic system with the Unreal Engine simulation, allowing commands to be sent and actor states to be retrieved in real time.
 
 Extensibility
 -------------

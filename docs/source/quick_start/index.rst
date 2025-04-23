@@ -1,8 +1,9 @@
-Getting Started
+Quick Start
 ===============
 
 .. toctree::
    :maxdepth: 1
+   :caption: Quick Start
 
    installation
-   quick_start
+   getting_started
