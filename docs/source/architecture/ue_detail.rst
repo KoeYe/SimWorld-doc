@@ -22,7 +22,7 @@ Below is a selection of the assets currently available in our simulator:
 
 These assets collectively enable the creation of complex, dynamic, and realistic city scenes for simulation, visualization, and research purposes.
 
-.. image:: ../assets/communicator.png
+.. image:: ../assets/assets.png
        :alt: Details Surround Building
        :width: 800px
        :align: center
