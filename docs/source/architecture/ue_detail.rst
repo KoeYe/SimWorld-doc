@@ -22,11 +22,12 @@ Below is a selection of the assets currently available in our simulator:
 
 These assets collectively enable the creation of complex, dynamic, and realistic city scenes for simulation, visualization, and research purposes.
 
-.. image:: ../assets/assets.png
+.. figure:: ../assets/assets.png
        :alt: Details Surround Building
        :width: 800px
        :align: center
-       :caption: A Subset of Collected Assets
+
+       A Subset of Collected Assets
 
 Asset Generation Pipeline
 ~~~~~~~~~~~~~~~~~~~~~~~
