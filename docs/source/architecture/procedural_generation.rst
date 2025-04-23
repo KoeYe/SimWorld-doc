@@ -127,18 +127,3 @@ Details refer to the smaller objects in a city, including trees, road cones, cha
        :width: 800px
        :align: center
     
-
-Interface
----------
-
-We also have a user-friendly interface that supports manual design and modification of city layouts. Users can add new buildings, set their positions through mouse dragging, and move existing buildings.
-
-API
----
-
-While rule-based generation creates realistic results, it limits layout diversity. Therefore, we provide function calling capabilities that allow LLMs to easily create and modify layouts. Assuming we have a VLM/LLM that can understand the abstract structure of city layouts—including tree distribution, road maps, benches, and building placement—it can use our tool to simulate a city in UE based on its understanding.
-
-Function calls include the following capabilities:
-
-.. code-block:: python
-All functions return appropriate error codes and messages when operations fail (e.g., invalid positions, overlapping objects, etc).
