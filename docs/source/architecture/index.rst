@@ -7,3 +7,4 @@ Architecture
    procedural_generation
    traffic_system
    a2a
+   communicator
