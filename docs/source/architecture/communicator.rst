@@ -7,7 +7,7 @@ We extended the basic communication protocol by defining a custom set of command
 
 The Communicator plays a central role in the simulation loop: Python uses it to update the virtual world, while UE reports back environmental feedback or visual state. This design allows us to decouple logic computation from rendering, achieving both flexibility and modularity.
 
-.. image:: ../assets/clpg_detail_1.png
+.. image:: ../assets/communicator.png
        :alt: Details Surround Building
        :width: 800px
        :align: center
