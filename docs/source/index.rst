@@ -1,7 +1,7 @@
 SimWorld Documentation
 ====================================
 
-.. image:: assets/Overview.png
+.. image:: assets/simworld_overview.png
    :alt: SimWorld Overview
    :width: 800px
    :align: center
@@ -31,6 +31,7 @@ simulation powered by Unreal Engine 5.
 
    components/overview
    components/citygen
+   components/waypoint_system
    components/traffic_system
    components/local_planner
    components/communicator
