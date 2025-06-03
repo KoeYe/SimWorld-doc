@@ -39,7 +39,25 @@ Contents
 
 .. toctree::
    :maxdepth: 2
+   :caption: GETTING STARTED
 
-   quick_start/index
-   architecture/index
-   python_api/index
+   getting_started/introduction
+   getting_started/quick_start
+
+.. toctree::
+   :maxdepth: 2
+   :caption: SIMWORLD COMPONENTS
+
+   components/overview
+   components/citygen
+   components/traffic_system
+   components/local_planner
+   components/communicator
+   components/ue_detail
+
+.. toctree::
+   :maxdepth: 2
+   :caption: PYTHON API REFERENCE
+
+   resources/python_api
+
