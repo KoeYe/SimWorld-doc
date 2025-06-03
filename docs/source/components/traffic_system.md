@@ -2,7 +2,11 @@
 
 ## Overview
 
-![Traffic System Overview](../assets/traffic_overview.png)
+<!-- ```{image} ../assets/traffic_overview.png
+:width: 400px
+:align: center
+:alt: Traffic System Overview
+``` -->
 
 The **Traffic System** is a core component of our simulator, responsible for simulating dynamic road usage by both vehicles and pedestrians. It enables the representation of realistic traffic flow, including vehicle generation, path planning, intersection control, and pedestrian behavior. By managing road interactions and traffic signals, this system supports complex urban scenarios such as congestion, pedestrian crossings, and traffic light coordination, providing a critical foundation for evaluating urban infrastructure and mobility policies.
 
@@ -18,7 +22,11 @@ Together, these components form a fully functional traffic simulation pipeline, 
 
 ## Architecture
 
-![Traffic System Architecture](../assets/traffic_arc.png)
+```{image} ../assets/traffic_arc.png
+:width: 400px
+:align: center
+:alt: Traffic System Overview
+```
 
 The traffic system adopts a modular architecture centered around a top-level `TrafficController`, which coordinates the behavior of three specialized managers: `VehicleManager`, `IntersectionManager`, and `PedestrianManager`.
 

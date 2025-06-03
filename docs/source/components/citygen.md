@@ -1,6 +1,6 @@
-# City Layout Procedural Generation
+# Layout Generation
 
-The **City Layout Procedural Generation (CLPG)** module is a key component of the SimWorld simulator, responsible for generating realistic city layouts from simple input specifications. This module provides a flexible and extensible framework for creating diverse urban environments that can be used for various embodied AI tasks.
+The **Layout Generation** module is a key component of the SimWorld simulator, responsible for generating realistic city layouts from simple input specifications. This module provides a flexible and extensible framework for creating diverse urban environments that can be used for various embodied AI tasks.
 
 ## Data Structure
 
@@ -18,7 +18,11 @@ Procedural generation is a fundamental method for creating city layouts that res
 
 ### Code Structure
 
-![City Layout Procedural Generation Architecture](../assets/clpg_arc.png)
+```{image} ../assets/clpg_arc.png
+:width: 400px
+:align: center
+:alt: Traffic System Overview
+```
 
 The city generator includes three managers: Road, Building, and Detail. Each manager contains list and quadtree data structures to store item information. QuadTree provides fast methods for searching space-related information, such as nearby objects. Lists offer a convenient way to iterate through items. 
 
@@ -42,7 +46,11 @@ In the initiation stage, the program reads the config file, focusing on the road
 
 Using the initial road(s) as a foundation, we generate additional roads through a tree-like growth structure.
 
-![Road Tree Growth](../assets/clpg_road_1.png)
+```{image} ../assets/clpg_road_1.png
+:width: 400px
+:align: center
+:alt: Traffic System Overview
+```
 
 To balance the road tree's depth and branch numbers, we use a Priority Queue instead of simple DFS or BFS iteration algorithms. The Priority Queue, implemented as a tree structure, helps select growth nodes from the generated road tree. This approach creates a road map with balanced branches and depth, better resembling real city or town road layouts.
 
@@ -52,7 +60,11 @@ During generation, we handle two special cases: closely spaced road endpoints an
 
 During generation, when a newly generated road endpoint is very close to an existing node, it creates an unsightly gap. In such cases, we attach the new node to the existing one, eliminating gaps while creating more diverse road lengths.
 
-![Road End Attachment](../assets/clpg_road_2.png)
+```{image} ../assets/clpg_road_2.png
+:width: 400px
+:align: center
+:alt: Traffic System Overview
+```
 
 ##### Cross check
 
@@ -74,7 +86,11 @@ while pointer_position < road_end * side * offset - margin_distance:
 
 In each iteration, we randomly select a building type from the building database and check if it can be placed at the current position without overlapping with roads or other buildings.
 
-![Building Generation](../assets/clpg_building.png)
+```{image} ../assets/clpg_building.png
+:width: 400px
+:align: center
+:alt: Traffic System Overview
+```
 
 ##### The last building on the road
 
@@ -88,11 +104,19 @@ Details refer to the smaller objects in a city, including trees, road cones, cha
     
 For each building, we sample a constant number of detail positions within a suitable range. We then check whether these candidate positions are available, since some may be in the middle of roads or inside other buildings. The sampling area consists of two rectangular zones, excluding the side closest to the road.
 
-![Details Surround Building](../assets/clpg_detail_1.png)
+```{image} ../assets/clpg_detail_1.png
+:width: 400px
+:align: center
+:alt: Traffic System Overview
+```
     
 ##### Details spline road
     
 Along the roads, we divide the sidewalk area into different functional parts: vegetation, random objects, and parking areas. We generate different types of detail items according to each area. The density of items varies by area, offering greater customization and creating a cleaner, more suitable sidewalk appearance. Three functional parts are divided by distance from the road's middle line:
 
-![Details Spline Road](../assets/clpg_detail_2.png)
+```{image} ../assets/clpg_detail_2.png
+:width: 400px
+:align: center
+:alt: Traffic System Overview
+```
     
