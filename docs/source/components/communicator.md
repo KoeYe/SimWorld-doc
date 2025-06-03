@@ -1,5 +1,4 @@
-Communicator
-===========
+# Communicator
 
 The **Communicator** module serves as the bridge between Python-based simulation logic and Unreal Engine's real-time 3D environment. Implemented in both Python and C++, it uses **UnrealCV** to establish a TCP connection, enabling asynchronous communication between the two sides.
 
