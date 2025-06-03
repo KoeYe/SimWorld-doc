@@ -21,7 +21,7 @@ Procedural generation is a fundamental method for creating city layouts that res
 ```{image} ../assets/clpg_arc.png
 :width: 400px
 :align: center
-:alt: Traffic System Overview
+:alt: Layout Generation Overview
 ```
 
 The city generator includes three managers: Road, Building, and Detail. Each manager contains list and quadtree data structures to store item information. QuadTree provides fast methods for searching space-related information, such as nearby objects. Lists offer a convenient way to iterate through items. 
@@ -49,7 +49,7 @@ Using the initial road(s) as a foundation, we generate additional roads through 
 ```{image} ../assets/clpg_road_1.png
 :width: 400px
 :align: center
-:alt: Traffic System Overview
+:alt: Road Generation
 ```
 
 To balance the road tree's depth and branch numbers, we use a Priority Queue instead of simple DFS or BFS iteration algorithms. The Priority Queue, implemented as a tree structure, helps select growth nodes from the generated road tree. This approach creates a road map with balanced branches and depth, better resembling real city or town road layouts.
@@ -63,7 +63,7 @@ During generation, when a newly generated road endpoint is very close to an exis
 ```{image} ../assets/clpg_road_2.png
 :width: 400px
 :align: center
-:alt: Traffic System Overview
+:alt: Road Attachment
 ```
 
 ##### Cross check
@@ -89,7 +89,7 @@ In each iteration, we randomly select a building type from the building database
 ```{image} ../assets/clpg_building.png
 :width: 400px
 :align: center
-:alt: Traffic System Overview
+:alt: Building Generation
 ```
 
 ##### The last building on the road
@@ -107,7 +107,7 @@ For each building, we sample a constant number of detail positions within a suit
 ```{image} ../assets/clpg_detail_1.png
 :width: 400px
 :align: center
-:alt: Traffic System Overview
+:alt: Element Generation
 ```
     
 ##### Details spline road
@@ -117,6 +117,6 @@ Along the roads, we divide the sidewalk area into different functional parts: ve
 ```{image} ../assets/clpg_detail_2.png
 :width: 400px
 :align: center
-:alt: Traffic System Overview
+:alt: Element Generation
 ```
     

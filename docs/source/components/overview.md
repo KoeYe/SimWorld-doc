@@ -11,13 +11,13 @@ Below shows the code structure of the Python Package.
 ```text
 simworld/               # Python package
     local_planner/      # Local planner component
-    agent/              # Basic agent class
+    agent/              # Agent system
     assets_rp/          # Live editor component for retrieval and re-placing
     citygen/            # City layout procedural generator
     communicator/       # Core component to connect Unreal Engine
     config/             # Configuration loader and default config file
     llm/                # Basic llm class
-    map/                # Basic map class
+    map/                # Basic map class and waypoint system
     traffic/            # Traffic system
     utils/              # Utility functions
 data/                   # Necessary input data
