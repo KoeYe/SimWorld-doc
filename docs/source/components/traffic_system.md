@@ -56,7 +56,7 @@ To enable traffic simulation (assuming a city layout is already available), begi
 traffic_controller = TrafficController(config, num_vehicles, num_pedestrians, layout_file, seed, dt)
 ```
 
-Next, establish a connection to Unreal Engine (UE) and spawn all necessary elements within the UE environment. For detailed usage, refer to the [Communicator]({doc}`components/communicator.md`).
+Next, establish a connection to Unreal Engine (UE) and spawn all necessary elements within the UE environment. For detailed usage, refer to the [Communicator]({doc}`./communicator.md`).
 
 Once all prerequisites are satisfied, start the simulation with:
 ```python
