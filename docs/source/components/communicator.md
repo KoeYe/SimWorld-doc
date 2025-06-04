@@ -1,4 +1,3 @@
-(communicator)=
 # Communicator
 
 ## Overview
