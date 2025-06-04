@@ -133,5 +133,5 @@ A complete example can be found in `scripts/layout_generation.ipynb`.
 
 ```{note}
 Layout Generation only produces JSON files representing the city’s structure.  
-To render the physical city in Unreal Engine (UE), see the [Communicator]({doc}`./communicator.md`) documentation.
+To render the physical city in Unreal Engine (UE), see the [Communicator]({doc}`components/communicator`) documentation.
 ```
