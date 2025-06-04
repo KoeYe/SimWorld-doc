@@ -75,6 +75,8 @@ SimWorld defines a two-tiered action space to support hierarchical planning and 
 
 + Low-level actions particularly correspond to navigation-related actions.
 
+See [Actions](ue_detail.md#actions) to get a full list of supported actions.
+
 ```python
 class HighLevelAction(Enum):
     """High-level actions that an agent can perform."""

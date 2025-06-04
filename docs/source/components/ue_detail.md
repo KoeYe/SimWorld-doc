@@ -33,11 +33,11 @@ Our **Asset Generation Pipeline** enables the automatic generation of 3D assets 
 **Asset Generation Pipeline** can only be used in editor mode.
 ```
 
-## Motions
+## Actions
 
-To enhance realism and interactivity in the simulation, we provide a comprehensive set of **motion animations**, with a strong focus on animations for pedestrians and robots. These motions are essential for simulating lifelike behaviors such as walking, running, waving, interacting with objects, and more. All motion assets are sourced from the Unreal Engine Marketplace to ensure quality and compatibility.
+To enhance realism and interactivity in the simulation, we provide a comprehensive set of **Action Space**, with a strong focus on animations for pedestrians and robots. These actions are essential for simulating lifelike behaviors such as walking, running, waving, interacting with objects, and more. All actions are sourced from the Unreal Engine Marketplace to ensure quality and compatibility.
 
-Here are some examples of motion animations included in the simulator:
+Here are some examples of actions included in the simulator:
 
 ```{todo}
 Add a table here
