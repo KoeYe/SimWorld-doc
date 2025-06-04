@@ -1,50 +1,35 @@
 # Layout Generation
 
-The **Layout Generation** module is a key component of the SimWorld simulator, responsible for generating realistic city layouts from simple input specifications. This module provides a flexible and extensible framework for creating diverse urban environments that can be used for various embodied AI tasks.
-
-## Data Structure
-
-A city layout contains many different types of elements. While it's impractical to catalog every possible item in a city, we can simplify our understanding by grouping all items into **4** main categories:
-
-| **Road**    | Highway          | Normal way  | Small roads | ... |
-|-------------|------------------|-------------|-------------|-----|
-| **Building**| Hospital         | Landmark    | School      | ... |
-| **Detail**  | Tree             | Bone        | Parking cars| ... |
-| **Actor**   | Cars on the road | Pedestrian  | Agent       | ... |
-
-## Procedural Generation
-
-Procedural generation is a fundamental method for creating city layouts that resemble the real world. Using this approach, all items in the generated world follow specific rules and constraints. These constraints control how different items are distributed, ensuring the city layout appears organized rather than random. 
-
-### Code Structure
-
-```{image} ../assets/clpg_arc.png
-:width: 400px
+## Overview
+```{image} ../assets/citygen.png
+:width: 800px
 :align: center
-:alt: Layout Generation Overview
+:alt: Layout Generation Pipeline
 ```
+The **Layout Generation** module is responsible for generating realistic city layouts from simple input specifications. This module provides a flexible and extensible framework for creating diverse urban environments that can be used for various embodied AI tasks.
 
-The city generator includes three managers: Road, Building, and Detail. Each manager contains list and quadtree data structures to store item information. QuadTree provides fast methods for searching space-related information, such as nearby objects. Lists offer a convenient way to iterate through items. 
+As illustrated in the figure above, the city generation process is organized into three sequential stages: road generation, building generation and street element generation. Each stage progressively adds layers of realism and complexity to the simulated environment.
 
-Generators contain various algorithms for generating and sampling candidate positions for items while handling overlapping situations. They offer constraints and rules of generation.
+1. Road Generation: The process begins with the creation of a road network, which serves as the backbone of the city. Roads are generated through an initiation phase and a tree-like growth process that balances depth and branching using a priority queue. Mechanisms such as road-end attachment and intersection checking ensure a coherent and plausible layout.
 
-The Road manager serves as the foundation for the city, followed by the Building manager. The Detail manager generates content based on data from the Road and Building managers through the generator.
+2. Building Generation: Once roads are established, buildings are procedurally placed along road segments. For each side of the road, candidate positions are sampled while checking for space availability and avoiding collisions. A greedy strategy is used to fill remaining gaps near road ends, maximizing spatial utilization and maintaining visual uniformity.
 
-### Generation Process
+3. Street Element Generation: Smaller environmental elements such as trees, road cones, benches, and parked vehicles are generated around buildings and alongside roads. These elements are categorized and placed based on contextual zones—either surrounding buildings or within designated sidewalk areas. While collisions with other objects are not strictly enforced for performance reasons, the placement respects basic accessibility constraints.
 
-There are 4 stages of generation process: road generation, building generation, detail generation and data generation
 
-#### Road
+## Procedural Generation Process
+
+Procedural generation is a fundamental technique for creating realistic city layouts. In this approach, all items in the generated world follow predefined rules and constraints. These constraints govern the spatial distribution of elements, ensuring the resulting layout is structured and coherent rather than arbitrary.
+
+**Related files:** `city_generator.py`.
+
+### Road Generation
 
 Road generation consists of two sub-stages: initiation and road-tree growth.
 
-##### Initiation
++ Initiation. In this stage, the system reads the configuration file, focusing on road length and the number of initial roads. It then spawns the first one or two roads, each with a constant length (as specified in the config) and aligned at a 0-degree angle to the x-axis.
 
-In the initiation stage, the program reads the config file, focusing on the road length and initial road count. It then spawns the first one or two roads on the map, which by default have a constant length as specified in the config and a 0-degree angle with the x-axis.
-
-##### Road-Tree growth
-
-Using the initial road(s) as a foundation, we generate additional roads through a tree-like growth structure.
++ Road-Tree growth. Starting from the initial road(s), new roads are generated in a branching, tree-like manner.
 
 ```{image} ../assets/clpg_road_1.png
 :width: 400px
@@ -52,13 +37,11 @@ Using the initial road(s) as a foundation, we generate additional roads through 
 :alt: Road Generation
 ```
 
-To balance the road tree's depth and branch numbers, we use a Priority Queue instead of simple DFS or BFS iteration algorithms. The Priority Queue, implemented as a tree structure, helps select growth nodes from the generated road tree. This approach creates a road map with balanced branches and depth, better resembling real city or town road layouts.
+To balance depth and branch density in the road network, we use a *Priority Queue* instead of simple *DFS* or *BFS* algorithms. The *Priority Queue* (implemented as a tree structure) selects optimal nodes for growth, resulting in more realistic urban layouts with balanced coverage.
 
-During generation, we handle two special cases: closely spaced road endpoints and intersecting road segments.
+Two special cases are handled during generation:
 
-##### Road end attachment
-
-During generation, when a newly generated road endpoint is very close to an existing node, it creates an unsightly gap. In such cases, we attach the new node to the existing one, eliminating gaps while creating more diverse road lengths.
++ Road End Attachment. When a new road endpoint is close to an existing node, a visible gap may appear. To avoid this, we attach the new node to the nearby existing node, eliminating the gap and introducing greater road length diversity.
 
 ```{image} ../assets/clpg_road_2.png
 :width: 400px
@@ -66,17 +49,15 @@ During generation, when a newly generated road endpoint is very close to an exis
 :alt: Road Attachment
 ```
 
-##### Cross check
++ Intersection check. Even with the attachment mechanism, intersecting roads can occur. We perform collision checks during generation and discard any road that causes an intersection.
 
-Despite the attachment mechanism, road intersections can still occur. We perform additional intersection checks during generation. If any roads intersect, we remove the most recently generated one.
+**Related files:** `road_generator.py`, `road_manager.py`.
 
-#### Building
+### Building Generation
 
-Building generation is based on the generated road maps. From a list of roads, we select one road segment and generate buildings along both sides. For each side, the generation process has two stages: normal generation and final building placement. The main goal is to create a uniform distribution of different building types while maximizing space utilization on the map.
+Buildings are generated based on the road network. For each road segment, buildings are placed along both sides. The generation process for each side consists of two phases: normal generation and final building placement. The aim is to achieve uniform distribution and maximize space utilization.
 
-##### Normal generation
-
-A pointer tracks the current position for candidate buildings. During generation, the pointer's position updates based on the building size and road angle. The pseudo code for pointer updates is shown as follows:
++ Normal generation. A pointer tracks the current candidate position for placing buildings. It moves along the road, updating based on building size and road angle. The logic is as follows:
 
 ```python
 pointer_position = road_start * side * offset + margin_distance
@@ -84,7 +65,7 @@ while pointer_position < road_end * side * offset - margin_distance:
    pointer_position += building_size * angle
 ```
 
-In each iteration, we randomly select a building type from the building database and check if it can be placed at the current position without overlapping with roads or other buildings.
+In each iteration, a building type is randomly selected from a building database. We check whether it can be placed without overlapping with roads or existing buildings.
 
 ```{image} ../assets/clpg_building.png
 :width: 400px
@@ -92,31 +73,65 @@ In each iteration, we randomly select a building type from the building database
 :alt: Building Generation
 ```
 
-##### The last building on the road
++ Final Building Placement. Near the end of a road, standard-sized buildings may no longer fit. To fill the remaining space efficiently, we greedily try building types from largest to smallest until one fits. If no building fits, we move on to the opposite side or to the next road segment.
 
-When the pointer approaches the road's end, most candidate buildings may not fit the remaining space. To fill this gap efficiently, we greedily select buildings from largest to smallest until one fits. After placement, we update the pointer's position and continue to the next iteration. Only when no building can fit in the remaining road space do we move to the other side of the road or the next road segment.
+**Related files:** `building_generator.py`, `building_manager.py`.
 
-#### Details
+### Street Element Generation
 
-Details refer to the smaller objects in a city, including trees, road cones, chairs, tables, scooters, and other items. These objects are distributed throughout every corner of the city. To simplify their generation process, we use two different approaches: details surrounding buildings and details along roads. Note that we don't consider collisions between details and other objects—we only check if positions are accessible. This is a practical trade-off between computational efficiency and visual effect, given the large number of details.
+Street elements include smaller city objects such as trees, cones, chairs, tables, and scooters. These are distributed throughout the city to enhance visual richness. We use two strategies for generating them: around buildings and along roads. For performance, we check only for accessibility (not collisions), which balances realism with efficiency.
 
-##### Details surround building
-    
-For each building, we sample a constant number of detail positions within a suitable range. We then check whether these candidate positions are available, since some may be in the middle of roads or inside other buildings. The sampling area consists of two rectangular zones, excluding the side closest to the road.
++ Elements surround building. For each building, we sample a fixed number of positions within a designated zone, excluding the side facing the road. Positions that fall on roads or inside buildings are discarded.
 
-```{image} ../assets/clpg_detail_1.png
+```{image} ../assets/clpg_element_1.png
 :width: 400px
 :align: center
 :alt: Element Generation
 ```
     
-##### Details spline road
-    
-Along the roads, we divide the sidewalk area into different functional parts: vegetation, random objects, and parking areas. We generate different types of detail items according to each area. The density of items varies by area, offering greater customization and creating a cleaner, more suitable sidewalk appearance. Three functional parts are divided by distance from the road's middle line:
++ Elements spline road. Sidewalk areas are divided into functional zones such as vegetation, miscellaneous objects, and parking. Each zone has distinct item types and densities, offering better control over sidewalk appearance. Zones are defined by distance from the road's centerline.
 
-```{image} ../assets/clpg_detail_2.png
+```{image} ../assets/clpg_element_2.png
 :width: 400px
 :align: center
 :alt: Element Generation
 ```
+
+**Related files:** `element_generator.py`, `element_manager.py`.
     
+## Using Layout Generation
+The `CityFunctionCall` class provides a simplified interface for generating city layouts programmatically.
+
+### Random City Generation
+To generate a city layout randomly:
+```python
+cfc = CityFunctionCall(config, num_roads, enable_element_generation)
+cfc.generate_city()
+cfc.export_city('path/to/your_folder')
+```
+This will automatically generate roads, buildings, and optional street elements based on the configuration.
+
+### Manual Road Specification
+For finer control over city structure, you can manually add roads and then generate buildings and street elements:
+```python
+cfc = CityFunctionCall(config)
+
+# Add roads manually
+cfc.add_road([0, 0], [200, 0])
+cfc.add_road([200, 0], [200, 200])
+cfc.add_road([200, 200], [400, 200])
+cfc.add_road([0, 0], [-200, 0])
+cfc.add_road([-200, 0], [-200, 200])
+cfc.add_road([0, 0], [0, -200])
+
+cfc.generate_building_alone_roads()
+cfc.generate_element_alone_roads()
+cfc.export_city('path/to/your_folder')
+```
+
+A complete example can be found in `scripts/layout_generation.ipynb`.
+
+```{note}
+Layout Generation only produces JSON files representing the city’s structure.  
+To render the physical city in Unreal Engine (UE), see the [Communicator]({doc}`components/communicator.md`) documentation.
+```
