@@ -24,7 +24,7 @@ class Communicator:
         self.unrealcv = unrealcv
         ...
 
-class UnrealCV(object):
+class UnrealCV:
     def __init__(self, port=9000, ip='127.0.0.1', resolution=(640, 480)):
         """Initialize the UnrealCV client.
 
