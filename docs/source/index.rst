@@ -43,3 +43,8 @@ simulation powered by Unreal Engine 5.
 
    resources/python_api
 
+.. toctree::
+   :maxdepth: 2
+   :caption: SIMWORLD ROBOTICS
+
+   simworld-robotics/simworld_robotics

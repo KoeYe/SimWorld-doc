@@ -39,7 +39,12 @@ class Edge:
 
 class Map:
     def __init__(self, config: Config, traffic_signals: list = None):
-        """Initialize an empty Map."""
+        """Initialize an empty Map.
+        
+        Args:
+            config: Configuration object containing map parameters.
+            traffic_signals: Optional list of traffic signals in the environment. Used when an agent needs to follow the traffic rules.
+        """
         self.nodes = set()
         self.edges = set()
         self.adjacency_list = defaultdict(list)
