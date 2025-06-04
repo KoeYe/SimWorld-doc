@@ -33,8 +33,8 @@ simulation powered by Unreal Engine 5.
    components/citygen
    components/waypoint_system
    components/traffic_system
-   components/local_planner
    components/communicator
+   components/agent_system
    components/ue_detail
 
 .. toctree::
