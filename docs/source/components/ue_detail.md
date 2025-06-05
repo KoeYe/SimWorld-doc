@@ -199,3 +199,19 @@ ucv.set_camera_resolution(camera_id)
 **Related files:** `communicator.py`, `unrealcv.py`.
 
 ## Synchronous and Asynchronous mode
+
+Our simulator supports both synchronous and asynchronous execution modes for communication between the Python client and the Unreal Engine (UE) server.
+
+In synchronous mode, the Python client explicitly controls the simulation timing. At each step, it sends a tick command to the UE server and waits until the server completes the simulation update. This mode ensures deterministic behavior, which is especially important for reinforcement learning, multi-agent coordination, and evaluation tasks.
+
+In asynchronous mode, the UE server runs continuously at its own frame rate, while the Python client retrieves data at any time. This allows for real-time interaction but can lead to non-determinism and race conditions in agent-environment interaction.
+
+```python
+# Set simulation mode: choose between "sync" (synchronous) and "async" (asynchronous)
+mode = "sync"
+tick_interval = 0.05  # Duration of each simulation step in seconds (only used in sync mode)
+ucv.set_mode(mode, tick_interval)
+
+# Advance the simulation by one tick (tick_interval seconds)
+ucv.tick() 
+```
