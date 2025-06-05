@@ -66,3 +66,7 @@ traffic_controller.simulation(physical_update_function, exit_event)
 + `exit_event`: Used in multi-thread environment.
 
 A complete example can be found in `scripts/traffic_simulation.ipynb`.
+
+```{note}
+Currently the Traffic System only runs in asynchronous mode.
+```
