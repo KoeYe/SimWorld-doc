@@ -39,28 +39,30 @@ To enhance realism and interactivity in the simulation, we provide a comprehensi
 
 Here are some examples of actions available in the simulator:
 
-| Action                    | Agent Type           | Category           | Description                                          |
+| Action | Agent Type | Category | Description |
 |---------------------------|----------------------|--------------------|------------------------------------------------------|
-| Move Forward              | Human                | Navigation         | Keep moving in the current direction                 |
-| Directional Step          | Robot                | Navigation         | Step in a specified direction briefly                |
-| Hold Position             | Robot                | Navigation         | Stay motionless for a short time                     |
-| Step Forward/Backward     | Human                | Navigation         | Step forward/backward for a fixed time               |
-| Rotate                    | Human, Robot         | Navigation         | Turn the body to face a new direction                |
-| Stop                      | Human                | Navigation         | Stop moving                                          |
-| Look Up/Down              | Human, Robot         | Observation        | Adjust the gaze upward/downward by a degree          |
-| Focus                     | Human, Robot         | Observation        | Adjust the field of view                             |
-| Pick Up                   | Human                | Object Interaction | Grasp and lift an object                             |
-| Drop Off                  | Human                | Object Interaction | Release a held object at the target location         |
-| Sit Down                  | Human                | Object Interaction | Transition to a seated position                      |
-| Stand Up                  | Human                | Object Interaction | Rise from a seated position                          |
-| Enter Car                 | Human                | Object Interaction | Get into a vehicle                                   |
-| Exit Car                  | Human                | Object Interaction | Leave a vehicle                                      |
-| Ride Scooter              | Human                | Object Interaction | Control and ride a scooter                           |
-| Have Conversation         | Human                | Social Action      | Exchange verbal communication                        |
-| Point Direction           | Human                | Social Action      | Gesture to indicate direction                        |
-| Wave Hand                 | Human                | Social Action      | Signal or greet with a hand wave                     |
-| Discuss                   | Human                | Social Action      | Engage in dialogue or explanation                    |
-| Argue with Body Language  | Human                | Social Action      | Express disagreement using gestures                  |
+| Move Forward | Humanoid | Navigation | Keep moving in the current direction |
+| Directional Step | Robot | Navigation | Step in a specified direction briefly |
+| Hold Position | Robot | Navigation | Stay motionless for a short time |
+| Step Forward/Backward | Humanoid | Navigation | Step forward/backward for a fixed time |
+| Rotate | Humanoid, Robot | Navigation | Turn the body to face a new direction |
+| Stop | Humanoid | Navigation | Stop moving |
+| Look Up/Down | Humanoid, Robot | Observation | Adjust the gaze upward/downward by a degree |
+| Focus | Humanoid, Robot | Observation | Adjust the field of view |
+| Pick Up | Humanoid | Object Interaction | Grasp and lift an object |
+| Drop Off | Humanoid | Object Interaction | Release a held object at the target location |
+| Set Throttle/Brack/Steering | Vehicle | Driving | Control a vehicle |
+| Sit Down | Humanoid | Object Interaction | Transition to a seated position |
+| Stand Up | Humanoid | Object Interaction | Rise from a seated position |
+| Enter Car | Humanoid | Object Interaction | Get into a vehicle |
+| Exit Car | Humanoid | Object Interaction | Leave a vehicle |
+| Get On Scooter | Humanoid | Object Interaction | Get on a scooter |
+| Get Off Scooter | Humanoid | Object Interaction | Get off a scooter |
+| Have Conversation | Humanoid | Social Action | Exchange verbal communication |
+| Point Direction | Humanoid | Social Action | Gesture to indicate direction |
+| Wave Hand | Humanoid | Social Action | Signal or greet with a hand wave |
+| Discuss | Humanoid | Social Action | Engage in dialogue or explanation |
+| Argue with Body Language | Humanoid | Social Action | Express disagreement using gestures |
 
 Demo for human action space
 
