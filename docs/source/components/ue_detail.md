@@ -39,30 +39,32 @@ To enhance realism and interactivity in the simulation, we provide a comprehensi
 
 Here are some examples of actions available in the simulator:
 
-| Action | Category | Description |
-|--------|----------|-------------|
-| Move Forward | Navigation | Keep moving in the current direction |
-| Step Forward/Backward | Navigation | Step forward/backward for a fixed time |
-| Rotate | Navigation | Turn the body to face a new direction |
-| Stop | Navigation | Stop moving |
-| Look Up/Down | Observation | Adjust the gaze upward/downward by a degree |
-| Focus | Observation | Adjust the field of view |
-| Pick Up | Object Interaction | Grasp and lift an object |
-| Drop Off | Object Interaction | Release a held object at the target location |
-| Sit Down | Object Interaction | Transition to a seated position |
-| Stand Up | Object Interaction | Rise from a seated position |
-| Enter Car | Object Interaction | Get into a vehicle |
-| Exit Car | Object Interaction | Leave a vehicle |
-| Ride Scooter | Object Interaction | Control and ride a scooter |
-| Have Conversation | Social Action | Exchange verbal communication |
-| Point Direction | Social Action | Gesture to indicate direction |
-| Wave Hand | Social Action | Signal or greet with a hand wave |
-| Discuss | Social Action | Engage in dialogue or explanation |
-| Argue with Body Language | Social Action | Express disagreement using gestures |
+| Action                    | Agent Type           | Category           | Description                                          |
+|---------------------------|----------------------|--------------------|------------------------------------------------------|
+| Move Forward              | Human                | Navigation         | Keep moving in the current direction                 |
+| Directional Step          | Robot                | Navigation         | Step in a specified direction briefly                |
+| Hold Position             | Robot                | Navigation         | Stay motionless for a short time                     |
+| Step Forward/Backward     | Human                | Navigation         | Step forward/backward for a fixed time               |
+| Rotate                    | Human, Robot         | Navigation         | Turn the body to face a new direction                |
+| Stop                      | Human                | Navigation         | Stop moving                                          |
+| Look Up/Down              | Human, Robot         | Observation        | Adjust the gaze upward/downward by a degree          |
+| Focus                     | Human, Robot         | Observation        | Adjust the field of view                             |
+| Pick Up                   | Human                | Object Interaction | Grasp and lift an object                             |
+| Drop Off                  | Human                | Object Interaction | Release a held object at the target location         |
+| Sit Down                  | Human                | Object Interaction | Transition to a seated position                      |
+| Stand Up                  | Human                | Object Interaction | Rise from a seated position                          |
+| Enter Car                 | Human                | Object Interaction | Get into a vehicle                                   |
+| Exit Car                  | Human                | Object Interaction | Leave a vehicle                                      |
+| Ride Scooter              | Human                | Object Interaction | Control and ride a scooter                           |
+| Have Conversation         | Human                | Social Action      | Exchange verbal communication                        |
+| Point Direction           | Human                | Social Action      | Gesture to indicate direction                        |
+| Wave Hand                 | Human                | Social Action      | Signal or greet with a hand wave                     |
+| Discuss                   | Human                | Social Action      | Engage in dialogue or explanation                    |
+| Argue with Body Language  | Human                | Social Action      | Express disagreement using gestures                  |
+
+Demo for human action space
 
 ```python
-# Below shows how to call these actions in Python.
-
 # Initialize a humanoid agent with position (0, 0) and facing direction (1, 0)
 humanoid = Humanoid(Vector(0, 0), Vector(1, 0))
 humanoid_name = 'GEN_BP_Humanoid_0'
@@ -132,6 +134,39 @@ communicator.humanoid_stop(agent.id, 2)
 
 ```
 
+Demo for robot action space
+
+```python
+# Specify robot name and asset
+robot_name = "Demo_Robot"
+robot_asset = "/Game/Robot_Dog/Blueprint/BP_SpotRobot.BP_SpotRobot_C"
+
+# Spawn robot in the simulator
+ucv.spawn_bp_asset(robot_asset, robot_name)
+ucv.enable_controller(robot_name, True)
+
+# Robot - look up / look down
+ucv.dog_look_up(robot_name)    # look up
+ucv.dog_look_down(robot_name)  # look down
+
+# Robot Movement
+# direction: 0 = forward, 1 = backward, 2 = left, 3 = right
+for direction in [0, 1, 2, 3]:
+    speed = 200
+    duration = 1
+    move_parameter = [speed, duration, direction]
+    ucv.dog_move(robot_name, move_parameter)
+    time.sleep(duration)
+
+# Robot Rotation
+# clockwise: 1 = right turn, -1 = left turn
+for angle, clockwise in [(90, 1), (-90, -1)]:
+    duration = 0.7
+    rotate_parameter = [duration, angle, clockwise]
+    ucv.dog_rotate(robot_name, rotate_parameter)
+    time.sleep(duration)
+
+```
 **Related files:** `communicator.py`, `unrealcv.py`.
 
 A complete example can be found in `scripts/ue_command_test.ipynb`.
